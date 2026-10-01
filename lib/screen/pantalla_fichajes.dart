@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sistema_fichajes/models/fichaje.dart';
 import 'package:sistema_fichajes/utils/formato.dart';
 
+import "dart:async";
+
 class PantallaFichajes extends StatefulWidget {
   const PantallaFichajes({Key? key}) : super(key: key);
   @override
@@ -10,6 +12,24 @@ class PantallaFichajes extends StatefulWidget {
 
 class _PantallaFichajesState extends State<PantallaFichajes> {
   final List<Fichaje> _fichajes = [];
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!_tocaEntrar) {
+        setState(() {});
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
   bool get _tocaEntrar => _fichajes.isEmpty || _fichajes.last.isFinished;
 
   Duration get _totalHoy {
@@ -61,11 +81,29 @@ class _PantallaFichajesState extends State<PantallaFichajes> {
                     itemBuilder: (context, index) {
                       final fichaje = _fichajes[index];
                       return ListTile(
-                        title: Text(formatearHora(fichaje.entrada)),
-                        subtitle: Text(
-                          fichaje.isFinished
-                              ? formatearHora(fichaje.salida!)
-                              : 'En curso',
+                        title: Row(
+                          children: [
+                            Icon(Icons.login, color: Colors.green, size: 20),
+                            const SizedBox(width: 5),
+                            Text(formatearHora(fichaje.entrada)),
+                          ],
+                        ),
+                        subtitle: Row(
+                          children: [
+                            Icon(
+                              fichaje.isFinished ? Icons.logout : Icons.timer,
+                              color: fichaje.isFinished
+                                  ? Colors.grey
+                                  : Colors.orange,
+                              size: 20,
+                            ),
+                            SizedBox(width: 5),
+                            Text(
+                              fichaje.isFinished
+                                  ? formatearHora(fichaje.salida!)
+                                  : 'En curso',
+                            ),
+                          ],
                         ),
                         trailing: Text(formatearDuracion(fichaje.duracion)),
                       );

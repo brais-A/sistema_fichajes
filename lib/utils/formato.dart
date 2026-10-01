@@ -4,7 +4,7 @@ String formatearHora(DateTime fecha) {
   return '${ponerCeros(fecha.hour)}:${ponerCeros(fecha.minute)}';
 }
 
-String formatearDuration(Duration duracion) {
+String formatearDuracion(Duration duracion) {
   final segundos = duracion.inSeconds % 60;
   final minutos = duracion.inMinutes % 60;
   final horas = duracion.inHours;

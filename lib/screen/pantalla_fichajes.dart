@@ -35,6 +35,7 @@ class _PantallaFichajesState extends State<PantallaFichajes> {
               ),
             )
           : ListView.builder(
+              padding: const EdgeInsets.only(bottom: 80),
               itemCount: _fichajes.length,
               itemBuilder: (context, index) {
                 final fichaje = _fichajes[index];
@@ -45,7 +46,7 @@ class _PantallaFichajesState extends State<PantallaFichajes> {
                         ? formatearHora(fichaje.salida!)
                         : 'En curso',
                   ),
-                  trailing: Text(formatearDuration(fichaje.duration)),
+                  trailing: Text(formatearDuration(fichaje.duracion)),
                 );
               },
             ),

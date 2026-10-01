@@ -4,7 +4,7 @@ import 'package:sistema_fichajes/screen/pantalla_fichajes.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(title: 'Fichajes', home: PantallaFichajes());

@@ -4,7 +4,7 @@ class Fichaje {
 
   Fichaje({required this.entrada, this.salida});
 
-  Duration get duration {
+  Duration get duracion {
     final fin = salida ?? DateTime.now();
     //Devolvemos a diferencia entre las dos horas
     return fin.difference(entrada);

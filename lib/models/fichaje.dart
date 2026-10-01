@@ -2,7 +2,7 @@
 class Fichaje {
   final DateTime entrada;
 
-  ///Salida siempre es null mientras el fichaje está en curso,ke rellena al fichar la salida
+  ///Salida siempre es null mientras el fichaje está en curso,se rellena al fichar la salida
   DateTime? salida;
 
   Fichaje({required this.entrada, this.salida});

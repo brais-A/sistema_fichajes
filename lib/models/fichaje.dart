@@ -41,4 +41,6 @@ class Fichaje {
           : null,
     );
   }
+
+  DateTime get dia => DateTime(entrada.year, entrada.month, entrada.day);
 }

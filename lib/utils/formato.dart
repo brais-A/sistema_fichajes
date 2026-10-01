@@ -10,3 +10,7 @@ String formatearDuracion(Duration duracion) {
   final horas = duracion.inHours;
   return '${ponerCeros(horas)}:${ponerCeros(minutos)}:${ponerCeros(segundos)}';
 }
+
+String formatearFecha(DateTime fecha) {
+  return '${ponerCeros(fecha.day)}/${ponerCeros(fecha.month)}/${(fecha.year)}';
+}

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sistema_fichajes/screen/pantalla_historial.dart';
 import 'package:sistema_fichajes/screen/pantalla_fichajes.dart';
 
 void main() => runApp(MyApp());

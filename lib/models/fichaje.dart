@@ -22,4 +22,23 @@ class Fichaje {
         entrada.month == hoy.month &&
         entrada.year == hoy.year;
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'entrada': entrada.toIso8601String(),
+      'salida': salida?.toIso8601String(),
+    };
+  }
+
+  factory Fichaje.fromJson(Map<String, dynamic> json) {
+    return Fichaje(
+      //Convierte json de texto a DateTime
+      ///Crea un fichaje a partir del Map generado por el toJson
+      entrada: DateTime.parse(json['entrada'] as String),
+      //Lo mismo pero salida puede ser null
+      salida: json['salida'] != null
+          ? DateTime.parse(json['salida'] as String)
+          : null,
+    );
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sistema_fichajes/models/fichaje.dart';
+import 'package:sistema_fichajes/services/almacen_fichajes.dart';
 import 'package:sistema_fichajes/utils/formato.dart';
 
 import "dart:async";
@@ -11,12 +12,19 @@ class PantallaFichajes extends StatefulWidget {
 }
 
 class _PantallaFichajesState extends State<PantallaFichajes> {
-  final List<Fichaje> _fichajes = [];
+  List<Fichaje> _fichajes = [];
   late Timer _timer;
+  final _almacen = AlmacenFichajes();
+
+  Future<void> _cargarFichajes() async {
+    _fichajes = await _almacen.cargar();
+    setState(() {});
+  }
 
   @override
   void initState() {
     super.initState();
+    _cargarFichajes();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (!_tocaEntrar) {
         setState(() {});
@@ -51,6 +59,7 @@ class _PantallaFichajesState extends State<PantallaFichajes> {
         _fichajes.last.salida = DateTime.now();
       }
     });
+    _almacen.guardar(_fichajes);
   }
 
   @override
